@@ -1,0 +1,56 @@
+# project - CONTACT BOOK
+
+def add_contact(database,name,contact):
+    database.append((name, contact))
+    print(f"The Contact Of '{name}': '{contact}' Is Updated!")
+
+
+def view_contacts(database, name, contact):
+  if database:
+     # print('Your Contact list:')
+     for index, (name , contact) in enumerate(database, start=1):
+      print(f" Your Contacts list :\n{index})  {name}: {contact}")
+  else:
+     print("Your Contact list is an empty!")
+
+def remove_contact(database, name, contact):
+  if (name,contact) in database:
+     database.remove((name, contact))
+     print(f" Contacts {name} {contact} removed Success!")
+  else:   
+     print('Contact Not Found!')
+
+
+def main():
+  database = []
+
+  while True:
+       menu='Menu\n 1) add_contact\n 2) view_contact\n 3) remove_contact'
+       print(menu)
+       try:   
+         user=int(input("Enter Your Choice Index To Start With ?  :"))
+         if user == 1:
+             name=input('Enter The Person name :')
+             contact=input('Enter Phone Number:')
+             add_contact(database, name, contact)
+         
+         elif user ==2:
+            view_contacts(database,name, contact)
+
+         elif user ==3:
+            name=input('enter The name To Remove Contact:')
+            contact=input('Enter The Contact To Remove:')
+            if (name, contact) in database:
+              remove_contact(database,name, contact)  
+            else:
+              print('Contact Not Found!')
+            
+         elif user ==4:
+          print('GoodBye!') 
+          break
+       except ValueError:
+          print('Invalid Input!')
+       except IndexError:
+         print('Error! index 407')
+if __name__ == "__main__":
+   main()
